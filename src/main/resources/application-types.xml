@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<types:mule xmlns:types="http://www.mulesoft.org/schema/mule/types">
+  <types:catalog>
+    <types:type name="get-covid-data-input" format="json">
+      <types:shape format="weave" example="examples/payload.json"><![CDATA[%dw 2.0
+
+type get_covid_data_input = {|
+  employeeID: Number {"typeId": "int"}, 
+  employeeName: String, 
+  employeeStatus: String
+|} {"example": "{\\\"employeeID\\\":100,\\\"employeeName\\\":\\\"Chinna\\\",\\\"employeeStatus\\\":\\\"A\\\"}"}
+
+]]></types:shape>
+    </types:type>
+    <types:type name="get-covid-data-output" format="xml">
+      <types:example format="xml" element="employee" location="examples/covidcase2.xml"/>
+    </types:type>
+    <types:type name="emp-data" format="xml">
+      <types:example format="xml" element="employee" location="examples/transform_xmal_attribute_data.xml"/>
+    </types:type>
+  </types:catalog>
+  <types:enrichment select="#254525af-cfde-401c-88f2-a655672fefa8">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="get-covid-data-input"/>
+        </types:message>
+      </types:input-event>
+      <types:output-event>
+        <types:message>
+          <types:payload type="get-covid-data-input"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#c71dd8c5-299b-49a0-b2dd-61e9fc4d4536">
+    <types:processor-declaration>
+      <types:output-event>
+        <types:message>
+          <types:payload type="emp-data"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+</types:mule>

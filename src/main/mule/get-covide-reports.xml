@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<flow name="get-covide-reportsFlow" doc:id="f19d3e17-fcaa-461a-b315-e9e4984bece0" >
+		<http:listener doc:name="Listener" doc:id="a99ba297-2caa-4aec-8ad7-3a9a2a3238f4" config-ref="HTTP_Listener_config" path="v1/cases" allowedMethods="GET"/>
+		<logger level="INFO" doc:name="Logger" doc:id="6a513b68-9390-4b2b-9460-0ceff63e0cc3" message="#[attributes.queryParams.state]"/>
+	</flow>
+</mule>

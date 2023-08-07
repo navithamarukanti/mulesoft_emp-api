@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="0c6ebcdf-c72b-4284-b762-d25ab49c7b81" basePath="covid" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="register_covide_caseFlow" doc:id="0f1f0dee-41ff-4597-893b-cbf79385426f" >
+		<http:listener doc:name="Listener" doc:id="7f1fe9d1-b891-4d1d-9a6f-e2ced57b5a0d" config-ref="HTTP_Listener_config" path="v1/cases" allowedMethods="POST"/>
+		<logger level="INFO" doc:name="Logger" doc:id="c1a18fa4-467c-4fd1-b7c4-b3c6bbe18e61" message="#[payload.source]"/>
+		<set-variable value="#[payload.employeeID]" doc:name="Set Variable" doc:id="dbb1d984-f85a-4d6b-abf1-d00a3b00b01e" variableName="username"/>
+		<logger level="INFO" doc:name="Logger" doc:id="2aa2d84b-2612-4091-9f02-6c6bbf6e2ff1" message="#[vars.username]"/>
+	</flow>
+</mule>
