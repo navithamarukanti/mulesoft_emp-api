@@ -9,7 +9,7 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
 			<http:response statusCode="#[vars.code]" reasonPhrase='#[vars.reason]' >
 			</http:response>
 		</http:listener>
-		<logger level="INFO" doc:name="Logger" doc:id="9482081e-c8df-4742-8dfa-51269148a402" message="#[payload.employee.employeeId.@grade]"/>
+		<logger level="INFO" doc:name="start logger" doc:id="9482081e-c8df-4742-8dfa-51269148a402" message="#[payload.employee.employeeId.@grade]"/>
 		<set-payload value="SUCCESS-navitha" doc:name="Set Payload" doc:id="13486469-9d8f-41f9-9a2d-d878330db812" />
 		<set-variable value="200" doc:name="Set Variable" doc:id="64c71576-8819-473d-a5b9-6c412da75ec1" variableName="code"/>
 		<set-variable value="ok" doc:name="Set Variable" doc:id="cd83dfda-2366-4a15-8c9a-e07a4670d564" variableName="reason"/>
